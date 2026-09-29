@@ -1,0 +1,32 @@
+FastAPI is initialized to create the backend API for the application. Required libraries are imported first, followed by the creation of the FastAPI application instance. The API can then define routes and handle client requests.
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import Optional
+
+# Initialize FastAPI application
+app = FastAPI(
+    title="My Application API",
+    description="Backend API for the application",
+    version="1.0.0"
+)
+
+# Sample request model
+class User(BaseModel):
+    name: str
+    email: str
+    age: Optional[int] = None
+
+# Root API endpoint
+@app.get("/")
+def home():
+    return {
+        "message": "FastAPI application is running"
+    }
+Running the Application
+Use Uvicorn to start the FastAPI server:
+uvicorn main:app --reload
+The API will be available at:
+http://127.0.0.1:8000
+FastAPI also provides automatic API documentation at:
+http://127.0.0.1:8000/docs
+This gives you the initialization, required imports, API instance, sample model, route, and local deployment command in one section.
